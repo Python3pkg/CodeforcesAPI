@@ -5,6 +5,7 @@ In this example we are loading users by their handles
 """
 
 from codeforces import CodeforcesAPI
+import six
 
 
 def main():
@@ -15,7 +16,7 @@ def main():
     users = api.user_info(handles)
 
     for u in users:
-        print('{}, rank: {}'.format(u.handle, u.rank))
+        six.print_(('{}, rank: {}'.format(u.handle, u.rank)))
 
 
 if __name__ == '__main__':

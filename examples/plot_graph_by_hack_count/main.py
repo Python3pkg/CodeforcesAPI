@@ -14,6 +14,7 @@ from codeforces import HackVerdictType
 
 from collections import defaultdict
 from collections import Counter
+import six
 
 
 def create_bar(x, y, name, color):
@@ -123,11 +124,10 @@ def create_bars(hacks_count):
                   Should have form [(HackVerdictType, [(problem_index, hack_count)]]
     :return: iterator of Bars
     """
-    return map(lambda verdict_problem_count: create_bar(x=[t[0] for t in verdict_problem_count[1]],
+    return [create_bar(x=[t[0] for t in verdict_problem_count[1]],
                                                         y=[t[1] for t in verdict_problem_count[1]],
                                                         name=get_verdict_human_readable(verdict_problem_count[0]),
-                                                        color=get_verdict_color(verdict_problem_count[0])),
-               hacks_count)
+                                                        color=get_verdict_color(verdict_problem_count[0])) for verdict_problem_count in hacks_count]
 
 
 def plot_graph(data, contest_id):
@@ -169,4 +169,4 @@ if __name__ == '__main__':
         main(sys.argv)
     else:
         print("Invalid number of arguments")
-        print("Usage: python {} [contest id]".format(os.path.basename(sys.argv[0])))
+        six.print_(("Usage: python {} [contest id]".format(os.path.basename(sys.argv[0]))))

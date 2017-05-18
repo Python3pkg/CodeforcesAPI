@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from codeforces import CodeforcesAPI
+import six
 
 
 def get_all_user_handles(ranklist_rows):
@@ -25,13 +26,13 @@ def main():
 
     print("Users from Ural FU:")
     for row in filter_by_organization(ranklist_rows, users, "Ural FU"):
-        print('    {party}, points: {points}'.format(party=row.party, points=row.points))
+        six.print_(('    {party}, points: {points}'.format(party=row.party, points=row.points)))
 
     print()
 
     print("Users from Mexico:")
     for row in filter_by_country(ranklist_rows, users, "Mexico"):
-        print('    {party}, points: {points}'.format(party=row.party, points=row.points))
+        six.print_(('    {party}, points: {points}'.format(party=row.party, points=row.points)))
 
 
 if __name__ == '__main__':

@@ -272,7 +272,7 @@ class CodeforcesAPI:
 
         data = self._data_retriever.get_data('contest.hacks', contestId=contest_id)
 
-        return map(Hack, data)
+        return list(map(Hack, data))
 
     def contest_list(self, gym=False):
         """
@@ -287,7 +287,7 @@ class CodeforcesAPI:
         """
         data = self._data_retriever.get_data('contest.list', gym=gym)
 
-        return map(Contest, data)
+        return list(map(Contest, data))
 
     def contest_rating_changes(self, contest_id):
         """
@@ -299,7 +299,7 @@ class CodeforcesAPI:
         """
         data = self._data_retriever.get_data('contest.ratingChanges', contestId=contest_id)
 
-        return map(RatingChange, data)
+        return list(map(RatingChange, data))
 
     def contest_standings(self, contest_id, from_=1, count=None, handles=None, show_unofficial=False):
         """
@@ -347,8 +347,8 @@ class CodeforcesAPI:
                                              **{'from': from_})
 
         return {'contest': Contest(data['contest']),
-                'problems': map(Problem, data['problems']),
-                'rows': map(RanklistRow, data['rows'])}
+                'problems': list(map(Problem, data['problems'])),
+                'rows': list(map(RanklistRow, data['rows']))}
 
     def contest_status(self, contest_id, handle=None, from_=1, count=None):
         """
@@ -383,7 +383,7 @@ class CodeforcesAPI:
                                              count=count,
                                              **{'from': from_})
 
-        return map(Submission, data)
+        return list(map(Submission, data))
 
     def problemset_problems(self, tags=None):
         """
@@ -397,8 +397,8 @@ class CodeforcesAPI:
         """
         data = self._data_retriever.get_data('problemset.problems', tags=tags)
 
-        return {'problems': map(Problem, data['problems']),
-                'problemStatistics': map(ProblemStatistics, data['problemStatistics'])}
+        return {'problems': list(map(Problem, data['problems'])),
+                'problemStatistics': list(map(ProblemStatistics, data['problemStatistics']))}
 
     def problemset_recent_status(self, count):
         """
@@ -415,7 +415,7 @@ class CodeforcesAPI:
 
         data = self._data_retriever.get_data('problemset.recentStatus', count=count)
 
-        return map(Submission, data)
+        return list(map(Submission, data))
 
     def user_info(self, handles):
         """
@@ -430,7 +430,7 @@ class CodeforcesAPI:
 
         data = self._data_retriever.get_data('user.info', handles=handles)
 
-        return map(User, data)
+        return list(map(User, data))
 
     def user_rated_list(self, active_only=False):
         """
@@ -446,7 +446,7 @@ class CodeforcesAPI:
 
         data = self._data_retriever.get_data('user.ratedList', activeOnly=active_only)
 
-        return map(User, data)
+        return list(map(User, data))
 
     def user_rating(self, handle):
         """
@@ -462,7 +462,7 @@ class CodeforcesAPI:
 
         data = self._data_retriever.get_data('user.rating', handle=handle)
 
-        return map(RatingChange, data)
+        return list(map(RatingChange, data))
 
     def user_status(self, handle, from_=1, count=None):
         """
@@ -483,4 +483,4 @@ class CodeforcesAPI:
 
         data = self._data_retriever.get_data('user.status', handle=handle, count=count, **{'from': from_})
 
-        return map(Submission, data)
+        return list(map(Submission, data))

@@ -14,6 +14,8 @@ from codeforces import VerdictType
 from codeforces import ParticipantType
 
 from collections import Counter
+from six.moves import filter
+import six
 
 
 def filter_only_contestants(submissions):
@@ -108,4 +110,4 @@ if __name__ == '__main__':
         main(sys.argv)
     else:
         print("Invalid number of arguments")
-        print("Usage: python {} [contest id]".format(os.path.basename(sys.argv[0])))
+        six.print_(("Usage: python {} [contest id]".format(os.path.basename(sys.argv[0]))))

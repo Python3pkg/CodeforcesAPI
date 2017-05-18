@@ -8,6 +8,7 @@ import os
 import sys
 
 from codeforces import CodeforcesAPI
+import six
 
 
 def main(argv):
@@ -17,10 +18,10 @@ def main(argv):
 
     submissions = api.contest_status(contest_id)
 
-    print('{:^20}{}'.format('Submission ID', 'Party members'))
+    six.print_(('{:^20}{}'.format('Submission ID', 'Party members')))
 
     for s in submissions:
-        print('{:^20}{}'.format(s.id, ', '.join(member.handle for member in s.author.members)))
+        six.print_(('{:^20}{}'.format(s.id, ', '.join(member.handle for member in s.author.members))))
 
 
 if __name__ == '__main__':
@@ -28,4 +29,4 @@ if __name__ == '__main__':
         main(sys.argv)
     else:
         print("Invalid number of arguments")
-        print("Usage: python {} [contest id]".format(os.path.basename(sys.argv[0])))
+        six.print_(("Usage: python {} [contest id]".format(os.path.basename(sys.argv[0]))))

@@ -10,6 +10,7 @@ import os
 import sys
 
 from codeforces import CodeforcesAPI
+import six
 
 
 def main(argv):
@@ -24,7 +25,7 @@ def main(argv):
         participa = str(len(llista))
         for p in llista:
             tio = p.party.members[0].handle
-            print(str(id)+' '+str(p.rank))
+            six.print_((str(id)+' '+str(p.rank)))
             concursos = api.user_rating(tio)
             cont = 0
             for c in concursos:
@@ -39,4 +40,4 @@ if __name__ == '__main__':
         main(sys.argv)
     else:
         print("Invalid number of arguments")
-        print("Usage: python {} [contest id]".format(os.path.basename(sys.argv[0])))
+        six.print_(("Usage: python {} [contest id]".format(os.path.basename(sys.argv[0]))))

@@ -13,6 +13,8 @@ from codeforces import CodeforcesAPI
 from codeforces import VerdictType
 from codeforces import Problem
 from codeforces import Contest
+from six.moves import filter
+import six
 
 
 def first_or_default(lst, f):
@@ -63,12 +65,12 @@ def main(argv):
     submissions = filter_accepted(api.user_status(handle))
     solved_problems = filter_c(submission.problem for submission in submissions)
     solved_problems = set(solved_problems)
-    print('Loaded {} solved C problems'.format(len(solved_problems)))
+    six.print_(('Loaded {} solved C problems'.format(len(solved_problems))))
 
     print('Loading contests...')
     contests = group_by_contest_id(filter_div2(api.contest_list()))
 
-    print('Loaded {} Div.2 contests'.format(len(contests)))
+    six.print_(('Loaded {} Div.2 contests'.format(len(contests))))
 
     print('Loading problemset...')
     problemset = api.problemset_problems()
@@ -83,11 +85,11 @@ def main(argv):
 
 
     print()
-    print('{:30}{:15}{}'.format('Name', 'Solved count', 'Url'))
+    six.print_(('{:30}{:15}{}'.format('Name', 'Solved count', 'Url')))
 
     for stat in stats[:10]:
         problem = problems[stat.contest_id][0]
-        print('{:30}{:<15}{}'.format(problem.name, stat.solved_count, make_url(problem)))
+        six.print_(('{:30}{:<15}{}'.format(problem.name, stat.solved_count, make_url(problem))))
 
 
 if __name__ == '__main__':
@@ -95,5 +97,5 @@ if __name__ == '__main__':
         main(sys.argv)
     else:
         print('Invalid number of arguments')
-        print('Usage: python3 {} [user handle]'.format(os.path.basename(sys.argv[0])))
+        six.print_(('Usage: python3 {} [user handle]'.format(os.path.basename(sys.argv[0]))))
         sys.exit(1)
